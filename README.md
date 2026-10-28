@@ -1,0 +1,76 @@
+HOTEL SOL - DATOS DE PRUEBA PARA HOTELAPP
+
+Aplicación de escritorio en JavaFX para consultar las habitaciones de un hotel ficticio (Hotel Sol - Madrid, 4 estrellas). Los datos se cargan desde un archivo XML y se muestran en una tabla, con un buscador por número de habitación.
+
+Proyecto académico. Todos los nombres, correos y datos son ficticios.
+
+   ![Captura de la aplicación](img/img1.png)
+
+Funcionalidades
+Carga automática de las habitaciones desde reservas.xml.
+Tabla con Número, Tipo, Capacidad, Precio/noche (€) y Estado.
+Búsqueda por número de habitación: selecciona la fila y se desplaza hasta ella.
+Avisos para entradas vacías y habitaciones inexistentes (por ejemplo, la 999).
+Gestión de los estados disponible, ocupada y mantenimiento.
+Tecnologías
+Java (versión 17 o superior recomendada)
+JavaFX 21 (FXML + TableView)
+XML con el parser DOM (javax.xml.parsers)
+Maven / Gradle (indica el que uses)
+Estructura del proyecto
+HotelApp/
+├── src/main/java/
+│   ├── Main.java            # Clase principal que arranca JavaFX
+│   ├── Controller.java      # Lógica: carga del XML, tabla y búsqueda
+│   └── Habitacion.java      # Modelo de datos de una habitación
+└── src/main/resources/
+    ├── reservas.xml         # Datos de prueba (30 habitaciones y 30 reservas)
+    └── vista.fxml           # Interfaz (ajusta al nombre real de tu archivo)
+Datos de prueba
+
+El archivo reservas.xml contiene:
+
+30 habitaciones (números 101 a 130) con tipo, capacidad, precio, planta, vista y accesibilidad.
+30 reservas de ejemplo (confirmadas, pendientes, finalizadas y canceladas).
+
+Estados de habitación: disponible, ocupada y mantenimiento.
+
+En esta versión básica, la disponibilidad se toma del atributo estado de cada habitación. No se calcula cruzando las fechas de las reservas.
+
+Cómo ejecutarlo
+Requisitos
+JDK 17 o superior
+JavaFX 21 (incluido vía Maven/Gradle o configurado en tu IDE)
+Pasos
+Clona el repositorio:
+bash
+   git clone https://github.com/tu-usuario/HotelApp.git
+   cd HotelApp
+Comprueba que reservas.xml está en src/main/resources/.
+Ejecuta la aplicación:
+bash
+   mvn clean javafx:run
+
+(o ejecuta la clase Main desde tu IDE)
+
+Pruebas sugeridas
+
+Busca las habitaciones 101, 112, 123, 128 y 999 para comprobar los distintos estados y el caso de habitación inexistente.
+
+Notas técnicas
+PropertyValueFactory lee los datos mediante los getters de Habitacion, por lo que sus nombres deben coincidir con las columnas (getNumero(), getTipo(), etc.).
+Si el proyecto usa módulos, module-info.java debe incluir:
+java
+  opens tu.paquete to javafx.fxml, javafx.base;
+Posibles mejoras
+Calcular la disponibilidad real según las fechas de reserva.
+Crear, modificar y cancelar reservas desde la interfaz.
+Filtrar la tabla por tipo, precio o estado.
+Colorear las filas según el estado de la habitación.
+Autor
+
+Víctor Tierno Corbatón - GitHub: https://github.com/victorrtierno · LinkedIn: https://www.linkedin.com/in/v%C3%ADctor-tierno-corbaton
+
+Licencia
+
+Proyecto Educativo.
